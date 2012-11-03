@@ -22,7 +22,8 @@ namespace WindowsGame2
         enum State
         {
             Walking,
-            Jumping
+            Jumping,
+            Ducking
         }
         State currentState = State.Walking;
         Vector2 startingPosition = Vector2.Zero;
@@ -36,17 +37,29 @@ namespace WindowsGame2
         {
             Position = new Vector2(START_POSITION_X, START_POSITION_Y);
             base.LoadContent(contentManager, WIZARD_ASSETNAME);
+            Source = new Rectangle(0,0, 200, Source.Height);
         }
 
         public void Update(GameTime gameTime)
         {
             KeyboardState currentKeyboardState = Keyboard.GetState();
 
-            UpdateMovement(currentKeyboardState);
+            UpdateWalking(currentKeyboardState);
             UpdateJump(currentKeyboardState);
+            UpdateDuck(currentKeyboardState);
 
             previousKeyboardState = currentKeyboardState;
             base.Update(gameTime, speed, direction);
+        }
+
+        private void UpdateWalking(KeyboardState currentKeyboardState)
+        {
+            if (currentState == State.Walking)
+            {
+                StopMoving();
+                speed = new Vector2(WIZARD_SPEED, WIZARD_SPEED);
+                UpdateDirectionsWithKeyboardState(currentKeyboardState, true, true);
+            }
         }
 
         private void UpdateJump(KeyboardState currentKeyboardState)
@@ -70,10 +83,30 @@ namespace WindowsGame2
                 {
                     Position.Y = startingPosition.Y;
                     currentState = State.Walking;
-                    direction = Vector2.Zero;
+                    StopMoving();
                 }
 
-                updateDirectionsWithKeyboardState(currentKeyboardState, true, false);
+                UpdateDirectionsWithKeyboardState(currentKeyboardState, true, false);
+            }
+        }
+
+        private void UpdateDuck(KeyboardState currentKeyboardState)
+        {
+            if (currentKeyboardState.IsKeyDown(Keys.D) == true)
+            {
+                if(currentState == State.Walking)
+                {
+                    StopMoving();
+		            Source = new Rectangle(200, 0, 200, Source.Height);
+		            currentState = State.Ducking;
+                }
+            }else
+            {
+                if (currentState == State.Ducking)
+                {
+                    Source = new Rectangle(0, 0, 200, Source.Height);
+                    currentState = State.Walking;
+                }
             }
         }
 
@@ -89,20 +122,8 @@ namespace WindowsGame2
 
         }
 
-        private void UpdateMovement(KeyboardState currentKeyboardState)
-        {
-            if (currentState == State.Walking)
-            {
-                speed = Vector2.Zero;
-                direction = Vector2.Zero;
 
-                speed = new Vector2(WIZARD_SPEED, WIZARD_SPEED);
-
-                updateDirectionsWithKeyboardState(currentKeyboardState, true, true);
-            }
-        }
-
-        private void updateDirectionsWithKeyboardState(KeyboardState currentKeyboardState, Boolean updateX, Boolean updateY)
+        private void UpdateDirectionsWithKeyboardState(KeyboardState currentKeyboardState, Boolean updateX, Boolean updateY)
         {
             if (updateX)
             {
@@ -127,6 +148,12 @@ namespace WindowsGame2
                     direction.Y = MOVE_DOWN;
                 }
             }
+        }
+
+        private void StopMoving()
+        {
+            speed = Vector2.Zero;
+            direction = Vector2.Zero;
         }
 
     }

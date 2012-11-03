@@ -39,7 +39,20 @@ namespace WindowsGame2
             {
                 scale = value;
                 //Recalculate the Size of the Sprite with the new scale
-                Size = new Rectangle(0, 0, (int)(spriteTexture.Width * Scale), (int)(spriteTexture.Height * Scale));
+                Size = new Rectangle(0, 0, (int)(source.Width * Scale), (int)(source.Height * Scale));
+            }
+        }
+
+        //The Rectangular area from the original image that 
+        //defines the Sprite. 
+        Rectangle source;
+        public Rectangle Source
+        {
+            get { return source; }
+            set
+            {
+                source = value;
+                Size = new Rectangle(0, 0, (int)(source.Width * Scale), (int)(source.Height * Scale));
             }
         }
 
@@ -49,13 +62,15 @@ namespace WindowsGame2
         {
             this.spriteTexture = spriteTexture;
             this.Position = position;
-            Size = new Rectangle(0, 0, spriteTexture.Width, spriteTexture.Height);
+            source = new Rectangle(0, 0, spriteTexture.Width, spriteTexture.Height);
+            this.Scale = scale;
         }
 
         public Sprite(Texture2D spriteTexture, Vector2 position, float scale)
         {
             this.spriteTexture = spriteTexture;
             this.Position = position;
+            source = new Rectangle(0, 0, spriteTexture.Width, spriteTexture.Height);
             this.Scale = scale;
         }
 
@@ -64,6 +79,7 @@ namespace WindowsGame2
         {
             spriteTexture = contentManager.Load<Texture2D>(assetName);
             AssetName = assetName;
+            source = new Rectangle(0, 0, spriteTexture.Width, spriteTexture.Height);
             Size = new Rectangle(0, 0, (int)(spriteTexture.Width * Scale), (int)(spriteTexture.Height * Scale));
         }
 
@@ -80,14 +96,12 @@ namespace WindowsGame2
         //Draw the sprite to the screen
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(spriteTexture, Position, new Rectangle(0, 0, (int)(spriteTexture.Width), (int)(spriteTexture.Height)),
-                             Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(spriteTexture, Position, Source, Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
         public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(spriteTexture, Position, new Rectangle(0, 0, (int)(spriteTexture.Width), (int)(spriteTexture.Height)),
-                             color, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
     }
