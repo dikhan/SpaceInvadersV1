@@ -1,0 +1,25 @@
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.exe
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.pdb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.exe
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.pdb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\addexisting.xnb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background01.xnb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background02.xnb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background03.xnb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background04.xnb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background05.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\addexisting.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background01.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background02.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background03.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background04.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background05.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\WizardSquare.xnb

@@ -1,0 +1,3 @@
+c:\users\gideon bakx\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2Content\obj\x86\Debug\WindowsGame2Content.contentprojResolveAssemblyReference.cache
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2Content\obj\x86\Debug\ResolveAssemblyReference.cache

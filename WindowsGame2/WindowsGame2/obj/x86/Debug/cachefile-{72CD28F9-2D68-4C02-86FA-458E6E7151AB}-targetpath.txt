@@ -1,0 +1,7 @@
+Content\sprites\addexisting.xnb
+Content\background\Background01.xnb
+Content\background\Background02.xnb
+Content\background\Background03.xnb
+Content\background\Background04.xnb
+Content\background\Background05.xnb
+Content\sprites\WizardSquare.xnb
