@@ -11,6 +11,15 @@
       <Time>2012-10-18T19:47:38.7113286-04:00</Time>
     </Item>
     <Item>
+      <Source>sprites\WizardSquare.png</Source>
+      <Name>sprites\WizardSquare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\WizardSquare.xnb</Output>
+      <Time>2012-10-31T20:59:58.63863-04:00</Time>
+    </Item>
+    <Item>
       <Source>background\Background01.png</Source>
       <Name>background\Background01</Name>
       <Importer>TextureImporter</Importer>
@@ -54,15 +63,6 @@
       <Options>None</Options>
       <Output>C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background05.xnb</Output>
       <Time>2012-10-31T12:38:11.1392783-04:00</Time>
-    </Item>
-    <Item>
-      <Source>sprites\WizardSquare.png</Source>
-      <Name>sprites\WizardSquare</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\WizardSquare.xnb</Output>
-      <Time>2012-10-31T20:59:58.63863-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

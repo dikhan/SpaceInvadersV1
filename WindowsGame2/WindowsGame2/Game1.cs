@@ -27,8 +27,6 @@ namespace WindowsGame2
 
         Fighter fighter;
 
-        Wizard mWizardSprite;
-
         List<Bullet> bullets = new List<Bullet>();
 
         Sprite mBackgroundOne;
@@ -53,7 +51,7 @@ namespace WindowsGame2
         {
             // TODO: Add your initialization logic here
 
-            mWizardSprite = new Wizard();
+            fighter = new Fighter();
 
             base.Initialize();
             
@@ -72,8 +70,6 @@ namespace WindowsGame2
             enemy = new Enemy(new Sprite(Content.Load<Texture2D>("sprites/addexisting"), new Vector2(500, 0)), 10);
             enemy2 = new Enemy(new Sprite(Content.Load<Texture2D>("sprites/addexisting"), new Vector2(200.0f, 50)), 25);
 
-            fighter = new Fighter(new Sprite(Content.Load<Texture2D>("sprites/addexisting"), new Vector2(500.0f, (float)(graphics.PreferredBackBufferHeight - 91))), 30);
-
             // Loading the background
             mBackgroundOne = new Sprite(Content.Load<Texture2D>("background/Background01"), new Vector2(0, 0), 1.05f);
             mBackgroundTwo = new Sprite(Content.Load<Texture2D>("background/Background02"), new Vector2(mBackgroundOne.Position.X + mBackgroundOne.Size.Width, 0), 1.05f);
@@ -82,7 +78,7 @@ namespace WindowsGame2
             mBackgroundFive = new Sprite(Content.Load<Texture2D>("background/Background05"), new Vector2(mBackgroundFour.Position.X + mBackgroundFour.Size.Width, 0), 1.05f);
 
             // TODO: use this.Content to load your game content here
-            mWizardSprite.LoadContent(this.Content);   
+            fighter.LoadContent(this.Content);   
 
         }
 
@@ -111,18 +107,6 @@ namespace WindowsGame2
 
             /* # Pixels movements each time the key is pushed */
             int m = 10;
-
-            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Right))
-                fighter.sprite.Position = new Vector2(fighter.sprite.Position.X + m, fighter.sprite.Position.Y);
-
-            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Left))
-                fighter.sprite.Position = new Vector2(fighter.sprite.Position.X - m, fighter.sprite.Position.Y);
-
-
-            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Space))
-            {
-                bullets.Add(new Bullet(new Sprite(Content.Load<Texture2D>("sprites/addexisting"), new Vector2(fighter.sprite.Position.X, fighter.sprite.Position.Y - 91)), 5));
-            }
                 
             goDown = false;
 
@@ -215,7 +199,7 @@ namespace WindowsGame2
             mBackgroundFour.Position += aDirection * aSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             mBackgroundFive.Position += aDirection * aSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            mWizardSprite.Update(gameTime);
+            fighter.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -241,9 +225,7 @@ namespace WindowsGame2
             enemy.sprite.Draw(spriteBatch, Color.Red);
             enemy2.sprite.Draw(spriteBatch, Color.White);
 
-            fighter.sprite.Draw(spriteBatch, Color.ForestGreen);
-
-            mWizardSprite.Draw(this.spriteBatch);
+            fighter.Draw(this.spriteBatch);
 
             if (bullets.Count != 0)
                 foreach (Bullet bullet in bullets)

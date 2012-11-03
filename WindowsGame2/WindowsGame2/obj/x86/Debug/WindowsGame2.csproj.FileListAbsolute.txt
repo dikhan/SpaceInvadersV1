@@ -23,3 +23,4 @@ C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\
 C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background04.xnb
 C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\background\Background05.xnb
 C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\WizardSquare.xnb
+C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\WizardSquare.xnb

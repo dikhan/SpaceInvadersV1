@@ -10,6 +10,11 @@ namespace WindowsGame2
 {
     class Sprite
     {
+        /* Constants - General for all the Sprites */
+        const int MOVE_UP = -1;
+        const int MOVE_DOWN = 1;
+        const int MOVE_LEFT = -1;
+        const int MOVE_RIGHT = 1;
 
         //The asset name for the Sprite's Texture
         public string AssetName;
@@ -62,12 +67,13 @@ namespace WindowsGame2
             Size = new Rectangle(0, 0, (int)(spriteTexture.Width * Scale), (int)(spriteTexture.Height * Scale));
         }
 
-        //Update the Sprite and change it's position based on the passed in speed, direction and elapsed time.
+        /* Update the Sprite and change it's position based on the passed in speed, direction and elapsed time.
+        // gameTime: It´s used to keep how fast the sprite moves consistent across different computers
+        // speed: How fast the sprite will move
+        // direction: Indicates if something should be moving to the left/right or up/down
+        */
         public void Update(GameTime gameTime, Vector2 speed, Vector2 direction)
         {
-            // gameTime is used to keep how fast the sprite moves consistent across different computers
-            // speed is how fast the sprite will move
-            // direction indicates if something should be moving to the left/right or up/down
             Position += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
@@ -80,8 +86,6 @@ namespace WindowsGame2
 
         public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            /*spriteBatch.Draw(this.spriteTexture, this.Position, new Rectangle(0, 0, (int)(spriteTexture.Width * this.Scale), (int)(spriteTexture.Height * this.Scale)),
-                             color, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);*/
             spriteBatch.Draw(spriteTexture, Position, new Rectangle(0, 0, (int)(spriteTexture.Width), (int)(spriteTexture.Height)),
                              color, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
