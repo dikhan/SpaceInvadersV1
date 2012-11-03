@@ -11,10 +11,10 @@ namespace WindowsGame2
     class Sprite
     {
         /* Constants - General for all the Sprites */
-        const int MOVE_UP = -1;
-        const int MOVE_DOWN = 1;
-        const int MOVE_LEFT = -1;
-        const int MOVE_RIGHT = 1;
+        public const int MOVE_UP = -1;
+        public const int MOVE_DOWN = 1;
+        public const int MOVE_LEFT = -1;
+        public const int MOVE_RIGHT = 1;
 
         //The asset name for the Sprite's Texture
         public string AssetName;
