@@ -29,7 +29,7 @@ namespace WindowsGame2
         public Rectangle Size;
 
         //Used to size the Sprite up or down from the original image
-        public float scale = 1.0f;
+        public float scale = 2.0f;
         //When the scale is modified throught he property, the Size of the 
         //sprite is recalculated with the new scale applied.
         public float Scale
