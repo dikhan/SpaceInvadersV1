@@ -12,7 +12,7 @@ namespace WindowsGame2
     class Fighter : Sprite
     {
 
-        const string WIZARD_ASSETNAME = "sprites/soldier";
+        const string WIZARD_ASSETNAME = "sprites/dummyBoy";
 
         const int START_POSITION_X = 125;
         const int START_POSITION_Y = 245;
@@ -21,16 +21,15 @@ namespace WindowsGame2
         const int JUMP_HEIGHT = 100;
 
         const int SECONDS_CYCLE = 2;
-        const int SPRITES_CYCLE = 9; //6
+        const int SPRITES_CYCLE = 16;
 
-        const int SPRITE_HEIGHT = 46; //35
-        const int SPRITE_WIDTH = 36;
+        const int SPRITE_HEIGHT = 90;
+        const int SPRITE_WIDTH = 61;
 
-        const int STATIC_SPRITE_IP_X = 26; // Initial Point X - Static Sprite 134
-        const int STATIC_SPRITE_IP_Y = 43; // Initial Point Y - Static Sprite 6
+        const int STATIC_SPRITE_IP_X = 21; // Initial Point X
+        const int STATIC_SPRITE_IP_Y = 16; // Initial Point Y
 
-        int spritePosition = 1;
-        int previousX = STATIC_SPRITE_IP_X;
+        int spritePosition = 0;
 
         enum State
         {
@@ -49,11 +48,38 @@ namespace WindowsGame2
 
         int timeStatic = 0;
 
+        Rectangle[,] sprites = new Rectangle [4,16];
+        //Rectangle[,] sprites = new Rectangle[,] { {new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT), new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT)}};
+
+        public void Initialize()
+        {
+
+            sprites[(int)State.Static,0] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,1] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 1), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,2] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 2), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,3] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 3), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,4] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 4), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,5] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 5), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,6] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 6), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static,7] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 7), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+
+            sprites[(int)State.Static, 8] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 9] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 1), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 10] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 2), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 11] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 3), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 12] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 4), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 13] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 5), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 14] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 6), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            sprites[(int)State.Static, 15] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 7), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+
+        }
+
         public void LoadContent(ContentManager contentManager)
         {
             Position = new Vector2(START_POSITION_X, START_POSITION_Y);
             base.LoadContent(contentManager, WIZARD_ASSETNAME);
             Source = new Rectangle(134,6, 35, 35);
+            Initialize();
         }
 
         public void Update(GameTime gameTime)
@@ -87,25 +113,25 @@ namespace WindowsGame2
                 if (timeStatic > (SECONDS_CYCLE * 1000 / SPRITES_CYCLE))
                 {
                     spritePosition += 1;
-                    if (spritePosition > SPRITES_CYCLE)
+                    if (spritePosition >= sprites.GetLength(1))
                     {
-                        previousX = STATIC_SPRITE_IP_X;
-                        spritePosition = 1;
+                        spritePosition = 0;
                     }
-                    else
-                        previousX += SPRITE_WIDTH;
 
-                    Source = new Rectangle(previousX, STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+                    Source = sprites[(int)State.Static,spritePosition];
                     timeStatic = 0;
                 }
             }
             else
             {
                 timeStatic = 0;
-                previousX = STATIC_SPRITE_IP_X;
             }
         }
 
+        private void UpdateSprite(State state, )
+        { 
+            
+        }
 
         private void UpdateWalking(KeyboardState currentKeyboardState)
         {
@@ -185,10 +211,12 @@ namespace WindowsGame2
                 if (currentKeyboardState.IsKeyDown(Keys.Left) == true)
                 {
                     direction.X = MOVE_LEFT;
+                    flipHorizontal = true;
                 }
                 else if (currentKeyboardState.IsKeyDown(Keys.Right) == true)
                 {
                     direction.X = MOVE_RIGHT;
+                    flipHorizontal = false;
                 }
             }
 
@@ -211,10 +239,10 @@ namespace WindowsGame2
             direction = Vector2.Zero;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        /*public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(spriteTexture, Position, Source, Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
-        }
+        }*/
 
     }
 }

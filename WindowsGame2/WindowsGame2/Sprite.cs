@@ -11,10 +11,13 @@ namespace WindowsGame2
     class Sprite
     {
         /* Constants - General for all the Sprites */
+
         public const int MOVE_UP = -1;
         public const int MOVE_DOWN = 1;
         public const int MOVE_LEFT = -1;
         public const int MOVE_RIGHT = 1;
+
+        /* Attributes - General for all the Sprites */
 
         //The asset name for the Sprite's Texture
         public string AssetName;
@@ -29,7 +32,7 @@ namespace WindowsGame2
         public Rectangle Size;
 
         //Used to size the Sprite up or down from the original image
-        public float scale = 2.0f;
+        public float scale = 1.0f;
         //When the scale is modified throught he property, the Size of the 
         //sprite is recalculated with the new scale applied.
         public float Scale
@@ -43,8 +46,7 @@ namespace WindowsGame2
             }
         }
 
-        //The Rectangular area from the original image that 
-        //defines the Sprite. 
+        //The Rectangular area from the original image that defines the Sprite. 
         Rectangle source;
         public Rectangle Source
         {
@@ -55,6 +57,16 @@ namespace WindowsGame2
                 Size = new Rectangle(0, 0, (int)(source.Width * Scale), (int)(source.Height * Scale));
             }
         }
+
+        enum Flip{
+            noneFlipping = SpriteEffects.None,
+            flipHorizontally = SpriteEffects.FlipHorizontally,
+            flipVertically = SpriteEffects.FlipVertically,
+        }
+        public Flip flip = Flip.noneFlipping;
+
+
+        /* Sprite Class starts */
 
         public Sprite() { }
 
@@ -101,7 +113,7 @@ namespace WindowsGame2
 
         public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, flip, 0);
         }
 
     }
