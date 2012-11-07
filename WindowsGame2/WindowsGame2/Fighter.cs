@@ -18,7 +18,7 @@ namespace WindowsGame2
         const int START_POSITION_Y = 245;
         
         const int WIZARD_SPEED = 250;
-        const int JUMP_HEIGHT = 100;
+        const int JUMP_HEIGHT = 150;
 
         const int SECONDS_CYCLE = 2;
         const int SPRITES_CYCLE = 16;
@@ -28,8 +28,6 @@ namespace WindowsGame2
 
         const int STATIC_SPRITE_IP_X = 21; // Initial Point X
         const int STATIC_SPRITE_IP_Y = 16; // Initial Point Y
-
-        int spritePosition = 0;
 
         enum State
         {
@@ -48,29 +46,55 @@ namespace WindowsGame2
 
         int timeStatic = 0;
 
-        Rectangle[,] sprites = new Rectangle [4,16];
-        //Rectangle[,] sprites = new Rectangle[,] { {new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT), new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT)}};
+        //StatusFrames [] statusFrames = new StatusFrames [Enum.GetValues(Type.GetType("Status")).Length];
+        StatusFrames[] statusFrames = new StatusFrames[4];
 
         public void Initialize()
         {
 
-            sprites[(int)State.Static,0] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,1] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 1), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,2] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 2), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,3] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 3), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,4] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 4), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,5] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 5), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,6] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 6), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static,7] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 7), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            StatusFrames staticFrames = new StatusFrames(1);
+            staticFrames.frames = new Rectangle[] {new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT)
+            
+            };
 
-            sprites[(int)State.Static, 8] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 9] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 1), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 10] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 2), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 11] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 3), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 12] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 4), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 13] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 5), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 14] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 6), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
-            sprites[(int)State.Static, 15] = new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 7), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT);
+            StatusFrames walkingFrames = new StatusFrames(16);
+            walkingFrames.frames = new Rectangle[] {new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 1), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 2), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 3), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 4), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 5), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 6), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 7), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),                               
+          
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 1), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 2), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 3), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 4), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 5), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 6), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 7), STATIC_SPRITE_IP_Y + SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT)
+            
+            };
+
+            StatusFrames jumpingFrames = new StatusFrames(2);
+            jumpingFrames.frames = new Rectangle[] {new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT)
+            
+            };
+
+            StatusFrames duckingFrames = new StatusFrames(2);
+            duckingFrames.frames = new Rectangle[] {new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT),
+                                                   new Rectangle(STATIC_SPRITE_IP_X + (SPRITE_WIDTH * 0), STATIC_SPRITE_IP_Y, SPRITE_WIDTH, SPRITE_HEIGHT)
+            
+            };
+
+            statusFrames[(int)State.Static] = staticFrames;
+            statusFrames[(int)State.Walking] = walkingFrames;
+            statusFrames[(int)State.Jumping] = jumpingFrames;
+            statusFrames[(int)State.Ducking] = duckingFrames;
 
         }
 
@@ -91,6 +115,8 @@ namespace WindowsGame2
             UpdateJump(currentKeyboardState);
             UpdateDuck(currentKeyboardState);
 
+            UpdateSprite(gameTime);
+
             previousKeyboardState = currentKeyboardState;
             base.Update(gameTime, speed, direction);
         }
@@ -101,36 +127,8 @@ namespace WindowsGame2
 
             if (currentState == State.Static && keys.Length == 0)
             {
-                timeStatic += gameTime.ElapsedGameTime.Milliseconds;
-                // preparar el cambio
-                // sumar el numero de pixels
-                // total segundos para completar el ciclo = const int 2
-                // numero de sprites en el ciclo = const int 6
-                // numero para sumar y pasar el siguiente sprite const int 35
-
-                // Starting pixel in X = 134
-
-                if (timeStatic > (SECONDS_CYCLE * 1000 / SPRITES_CYCLE))
-                {
-                    spritePosition += 1;
-                    if (spritePosition >= sprites.GetLength(1))
-                    {
-                        spritePosition = 0;
-                    }
-
-                    Source = sprites[(int)State.Static,spritePosition];
-                    timeStatic = 0;
-                }
+                
             }
-            else
-            {
-                timeStatic = 0;
-            }
-        }
-
-        private void UpdateSprite(State state, )
-        { 
-            
         }
 
         private void UpdateWalking(KeyboardState currentKeyboardState)
@@ -139,7 +137,11 @@ namespace WindowsGame2
             {
                 StopMoving();
                 speed = new Vector2(WIZARD_SPEED, WIZARD_SPEED);
-                UpdateDirectionsWithKeyboardState(currentKeyboardState, true, true);
+                Boolean walking = UpdateDirectionsWithKeyboardState(currentKeyboardState, true, true);
+                if (walking)
+                    currentState = State.Walking;
+                else
+                    currentState = State.Static;
             }
         }
 
@@ -191,6 +193,26 @@ namespace WindowsGame2
             }
         }
 
+        private void UpdateSprite(GameTime gameTime)
+        {
+            // preparar el cambio
+            // sumar el numero de pixels
+            // total segundos para completar el ciclo = const int 2
+            // numero de sprites en el ciclo = const int 6
+            // numero para sumar y pasar el siguiente sprite const int 35
+
+            // Starting pixel in X = 134
+
+            timeStatic += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeStatic > (SECONDS_CYCLE * 1000 / SPRITES_CYCLE))
+            {
+                Source = statusFrames[(int)currentState].getFrame();
+                timeStatic = 0;
+            }
+            //currentState = State.Static;
+
+        }
+
         private void Jump()
         {
             if (currentState != State.Jumping)
@@ -204,7 +226,7 @@ namespace WindowsGame2
         }
 
 
-        private void UpdateDirectionsWithKeyboardState(KeyboardState currentKeyboardState, Boolean updateX, Boolean updateY)
+        private Boolean UpdateDirectionsWithKeyboardState(KeyboardState currentKeyboardState, Boolean updateX, Boolean updateY)
         {
             if (updateX)
             {
@@ -218,6 +240,9 @@ namespace WindowsGame2
                     direction.X = MOVE_RIGHT;
                     flipHorizontal = false;
                 }
+
+                /*if (currentKeyboardState.IsKeyDown(Keys.Left) == true || currentKeyboardState.IsKeyDown(Keys.Right) == true)
+                    currentState = State.Walking;*/
             }
 
             if (updateY)
@@ -230,7 +255,13 @@ namespace WindowsGame2
                 {
                     direction.Y = MOVE_DOWN;
                 }
+
+                /*if (currentKeyboardState.IsKeyDown(Keys.Up) == true || currentKeyboardState.IsKeyDown(Keys.Down) == true)
+                    currentState = State.Walking;*/
             }
+
+            return (currentKeyboardState.IsKeyDown(Keys.Left) || currentKeyboardState.IsKeyDown(Keys.Right) || currentKeyboardState.IsKeyDown(Keys.Up) || currentKeyboardState.IsKeyDown(Keys.Down));
+
         }
 
         private void StopMoving()

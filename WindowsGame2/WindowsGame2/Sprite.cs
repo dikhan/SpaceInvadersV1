@@ -58,12 +58,7 @@ namespace WindowsGame2
             }
         }
 
-        enum Flip{
-            noneFlipping = SpriteEffects.None,
-            flipHorizontally = SpriteEffects.FlipHorizontally,
-            flipVertically = SpriteEffects.FlipVertically,
-        }
-        public Flip flip = Flip.noneFlipping;
+        public Boolean flipHorizontal = false;
 
 
         /* Sprite Class starts */
@@ -113,7 +108,10 @@ namespace WindowsGame2
 
         public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, flip, 0);
+            if (flipHorizontal)
+                spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);
+            else
+                spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
     }
