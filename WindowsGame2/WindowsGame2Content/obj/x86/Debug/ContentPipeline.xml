@@ -82,6 +82,15 @@
       <Output>C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\dummyBoy.xnb</Output>
       <Time>2012-11-05T14:30:45.259098-05:00</Time>
     </Item>
+    <Item>
+      <Source>sprites\Fireball.png</Source>
+      <Name>sprites\Fireball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\Fireball.xnb</Output>
+      <Time>2012-11-11T20:05:46.1422404-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -101,12 +101,12 @@ namespace WindowsGame2
         }
 
         //Draw the sprite to the screen
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(spriteTexture, Position, Source, Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Color color)
+        public virtual void Draw(SpriteBatch spriteBatch, Color color)
         {
             if (flipHorizontal)
                 spriteBatch.Draw(spriteTexture, Position, Source, color, 0.0f, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);

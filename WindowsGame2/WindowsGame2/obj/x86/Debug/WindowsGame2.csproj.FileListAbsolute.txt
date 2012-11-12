@@ -28,3 +28,4 @@ C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\
 C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersV1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\soldier.xnb
 C:\Users\dkhan\Documents\Visual Studio 2010\Projects\SpaceInvadersV1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\dummyBoy.xnb
 C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\dummyBoy.xnb
+C:\Users\Daniel I Khan Ramiro\git\SpaceInvadersv1\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\sprites\Fireball.xnb

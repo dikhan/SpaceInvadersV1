@@ -49,6 +49,11 @@ namespace WindowsGame2
         //StatusFrames [] statusFrames = new StatusFrames [Enum.GetValues(Type.GetType("Status")).Length];
         StatusFrames[] statusFrames = new StatusFrames[4];
 
+        /* Fire Events */
+        List<Fireball> fireballs = new List<Fireball>();
+
+        ContentManager contentManager;
+
         public void Initialize()
         {
 
@@ -100,6 +105,14 @@ namespace WindowsGame2
 
         public void LoadContent(ContentManager contentManager)
         {
+
+            this.contentManager = contentManager;
+
+            foreach (Fireball fireball in fireballs)
+            {
+                fireball.LoadContent(contentManager);
+            }
+
             Position = new Vector2(START_POSITION_X, START_POSITION_Y);
             base.LoadContent(contentManager, WIZARD_ASSETNAME);
             Source = new Rectangle(134,6, 35, 35);
@@ -114,6 +127,7 @@ namespace WindowsGame2
             UpdateWalking(currentKeyboardState);
             UpdateJump(currentKeyboardState);
             UpdateDuck(currentKeyboardState);
+            UpdateFireball(gameTime, currentKeyboardState);
 
             UpdateSprite(gameTime);
 
@@ -121,6 +135,16 @@ namespace WindowsGame2
             base.Update(gameTime, speed, direction);
         }
 
+        public override void Draw(SpriteBatch theSpriteBatch)
+        {
+            foreach (Fireball aFireball in fireballs)
+            {
+                aFireball.Draw(theSpriteBatch);
+            }
+            base.Draw(theSpriteBatch);
+        }
+
+        /* Static State */
         private void UpdateStatic(KeyboardState currentKeyboardState, GameTime gameTime)
         {
             Keys[] keys = currentKeyboardState.GetPressedKeys();
@@ -131,6 +155,7 @@ namespace WindowsGame2
             }
         }
 
+        /* Walking State */
         private void UpdateWalking(KeyboardState currentKeyboardState)
         {
             if (currentState == State.Walking || currentState == State.Static)
@@ -145,6 +170,7 @@ namespace WindowsGame2
             }
         }
 
+        /* Jump State */
         private void UpdateJump(KeyboardState currentKeyboardState)
         {
             if (currentState == State.Walking || currentState == State.Static)
@@ -173,6 +199,19 @@ namespace WindowsGame2
             }
         }
 
+        private void Jump()
+        {
+            if (currentState != State.Jumping)
+            {
+                currentState = State.Jumping;
+                startingPosition = Position;
+                direction.Y = MOVE_UP;
+                speed = new Vector2(WIZARD_SPEED, WIZARD_SPEED);
+            }
+
+        }
+
+        /* Duck State */
         private void UpdateDuck(KeyboardState currentKeyboardState)
         {
             if (currentKeyboardState.IsKeyDown(Keys.D) == true)
@@ -193,6 +232,48 @@ namespace WindowsGame2
             }
         }
 
+        /* Fireball */
+        private void UpdateFireball(GameTime gameTime, KeyboardState currentKeyboardState)
+        {
+            foreach (Fireball fireball in fireballs)
+            {
+                fireball.Update(gameTime);
+            }
+
+            if (currentKeyboardState.IsKeyDown(Keys.S) == true && previousKeyboardState.IsKeyDown(Keys.S) == false)
+            {
+                ShootFireball();
+            }
+        }
+
+        private void ShootFireball()
+        {
+            if (currentState == State.Walking)
+            {
+                bool aCreateNew = true;
+                foreach (Fireball aFireball in fireballs)
+                {
+                    if (aFireball.Visible == false)
+                    {
+                        aCreateNew = false;
+                        aFireball.Fire(Position + new Vector2(Size.Width / 2, Size.Height / 2),
+                            new Vector2(200, 0), new Vector2(1, 0));
+                        break;
+                    }
+                }
+
+                if (aCreateNew == true)
+                {
+                    Fireball aFireball = new Fireball();
+                    aFireball.LoadContent(contentManager);
+                    aFireball.Fire(Position + new Vector2(Size.Width / 2, Size.Height / 2),
+                        new Vector2(200, 200), new Vector2(1, 0));
+                    fireballs.Add(aFireball);
+                }
+            }
+        }
+
+
         private void UpdateSprite(GameTime gameTime)
         {
             // preparar el cambio
@@ -210,18 +291,6 @@ namespace WindowsGame2
                 timeStatic = 0;
             }
             //currentState = State.Static;
-
-        }
-
-        private void Jump()
-        {
-            if (currentState != State.Jumping)
-            {
-                currentState = State.Jumping;
-                startingPosition = Position;
-                direction.Y = MOVE_UP;
-                speed = new Vector2(WIZARD_SPEED, WIZARD_SPEED);
-            }
 
         }
 
@@ -269,11 +338,6 @@ namespace WindowsGame2
             speed = Vector2.Zero;
             direction = Vector2.Zero;
         }
-
-        /*public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(spriteTexture, Position, Source, Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
-        }*/
 
     }
 }
